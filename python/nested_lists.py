@@ -1,11 +1,20 @@
+records = []
 if __name__ == '__main__':
-    records = []
     for _ in range(int(input())):
         name = input()
         score = float(input())
-
+        
         records.append([name, score])
-    records = sorted(sorted(records, key=lambda x: x[1])[1:3])
+    
+all_marks = list(set([x[1] for x in records]))
+sorted_marks = sorted(all_marks)
 
-    for i in records:
-        print(i[0], sep='\n')
+if len(sorted_marks) > 1:
+    second_highest = sorted_marks[1]
+
+    names = []
+    for name, marks in filter(lambda x: x[1] == second_highest, records):
+        names.append(name)
+        
+    for i in sorted(names):
+        print(i)
